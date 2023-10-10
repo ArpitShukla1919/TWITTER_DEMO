@@ -3,7 +3,7 @@ import { connect } from './config/database.js';
 import bodyParser from 'body-parser';
 const app = express();
 
-import apiRoutes from './routes/index.js';
+  import apiRoutes from './routes/index.js';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
