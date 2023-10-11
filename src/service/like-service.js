@@ -22,7 +22,7 @@ class LikeService {
         if(exists){
             likeable.likes.pull(exists.id);
             await likeable.save();
-            await exists.save();
+            await exists.deleteOne();
             var isAdded = false;
         }
         else{
