@@ -21,6 +21,7 @@ class LikeService {
       likeable: modelId,
     });
     if (exists) {
+      console.log(exists);
       likeable.likes.pull(exists.id);
       await likeable.save();
       await exists.deleteOne();
