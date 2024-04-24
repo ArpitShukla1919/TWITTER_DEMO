@@ -1,13 +1,35 @@
 import mongoose from "mongoose";
-const commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema(
+  {
     content: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
-    userEmail: {
-        type: String
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-}, {timestamps: true});
+    onModel: {
+      type: String,
+      required: true,
+      enum: ["Tweet", "Comment"], // The comment is made on the tweent or tweet
+    },
+    commentable: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: "onModel",
+    },
 
-const Comment = mongoose.model('Comment', commentSchema);
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
+const Comment = mongoose.model("Comment", commentSchema);
 export default Comment;
